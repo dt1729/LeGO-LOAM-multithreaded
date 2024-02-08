@@ -471,6 +471,8 @@ public:
         newSegmentedCloud = true;
     }
 
+    void laserCloudCopier()
+
     void outlierCloudHandler(const sensor_msgs::PointCloud2ConstPtr& msgIn){
 
         timeNewOutlierCloud = msgIn->header.stamp.toSec();
