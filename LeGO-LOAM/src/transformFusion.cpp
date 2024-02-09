@@ -240,7 +240,7 @@ public:
 };
 
 
-int main(int argc, char** argv)
+int main(int argc, char** arg   v)
 {
     ros::init(argc, argv, "lego_loam");
     

@@ -428,6 +428,44 @@ public:
         }
     }
 
+    /**
+     * @brief 
+     * 
+     * @param buffer_vec 
+     */
+    void laserCloudCopier(const std::vector<single_buffer> buffer_vec, std::mutex producer_consumer){
+        std::unique_lock<std::mutex> uniq_lck(producer_consumer);
+            // Save Laser data and IMU data here:
+            timeNewSegmentedCloud = timeScanCur;
+
+            segmentedCloud->clear();
+            pcl::fromROSMsg(*laserCloudMsg, *segmentedCloud);
+
+            newSegmentedCloud = true;
+
+            // Update internal IMU buffer counter
+            imuPointerLast = (imuPointerLast + 1) % imuQueLength;
+
+            imuTime[imuPointerLast] = imuIn->header.stamp.toSec();
+
+            // Buffer_vec contains imu in the last member.
+            imuRoll[imuPointerLast] = buffer_vec.back()->...;
+            imuPitch[imuPointerLast] = buffer_vec.back()->...;
+            imuYaw[imuPointerLast] = buffer_vec.back()->...;
+
+            imuAccX[imuPointerLast] = buffer_vec.back()->...;
+            imuAccY[imuPointerLast] = buffer_vec.back()->...;
+            imuAccZ[imuPointerLast] = buffer_vec.back()->...;
+
+            imuAngularVeloX[imuPointerLast] = buffer_vec.back()->....angular_velocity.x;
+            imuAngularVeloY[imuPointerLast] = buffer_vec.back()->....angular_velocity.y;
+            imuAngularVeloZ[imuPointerLast] = buffer_vec.back()->....angular_velocity.z;
+
+        uniq_lck.unlock();
+
+        AccumulateIMUShiftAndRotation();
+    }
+
     void imuHandler(const sensor_msgs::Imu::ConstPtr& imuIn)
     {
         double roll, pitch, yaw;
@@ -471,7 +509,6 @@ public:
         newSegmentedCloud = true;
     }
 
-    void laserCloudCopier()
 
     void outlierCloudHandler(const sensor_msgs::PointCloud2ConstPtr& msgIn){
 
