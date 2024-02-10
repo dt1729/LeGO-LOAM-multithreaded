@@ -461,9 +461,9 @@ public:
             imuAngularVeloY[imuPointerLast] = buffer_vec.back()->....angular_velocity.y;
             imuAngularVeloZ[imuPointerLast] = buffer_vec.back()->....angular_velocity.z;
 
+            AccumulateIMUShiftAndRotation();
+    
         uniq_lck.unlock();
-
-        AccumulateIMUShiftAndRotation();
     }
 
     void imuHandler(const sensor_msgs::Imu::ConstPtr& imuIn)
