@@ -1523,29 +1523,29 @@ public:
 };
 
 
-int main(int argc, char** argv)
-{
-    ros::init(argc, argv, "lego_loam");
+// int main(int argc, char** argv)
+// {
+//     ros::init(argc, argv, "lego_loam");
 
-    ROS_INFO("\033[1;32m---->\033[0m Map Optimization Started.");
+//     ROS_INFO("\033[1;32m---->\033[0m Map Optimization Started.");
 
-    mapOptimization MO;
+//     mapOptimization MO;
 
-    std::thread loopthread(&mapOptimization::loopClosureThread, &MO);
-    std::thread visualizeMapThread(&mapOptimization::visualizeGlobalMapThread, &MO);
+//     std::thread loopthread(&mapOptimization::loopClosureThread, &MO);
+//     std::thread visualizeMapThread(&mapOptimization::visualizeGlobalMapThread, &MO);
 
-    ros::Rate rate(200);
-    while (ros::ok())
-    {
-        ros::spinOnce();
+//     ros::Rate rate(200);
+//     while (ros::ok())
+//     {
+//         ros::spinOnce();
 
-        MO.run();
+//         MO.run();
 
-        rate.sleep();
-    }
+//         rate.sleep();
+//     }
 
-    loopthread.join();
-    visualizeMapThread.join();
+//     loopthread.join();
+//     visualizeMapThread.join();
 
-    return 0;
-}
+//     return 0;
+// }

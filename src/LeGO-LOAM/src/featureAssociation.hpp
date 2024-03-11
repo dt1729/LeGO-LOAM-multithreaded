@@ -428,43 +428,43 @@ public:
         }
     }
 
-    /**
-     * @brief 
-     * 
-     * @param buffer_vec 
-     */
-    void laserCloudCopier(const std::vector<single_buffer> buffer_vec, std::mutex producer_consumer){
-        std::unique_lock<std::mutex> uniq_lck(producer_consumer);
-            // Save Laser data and IMU data here:
-            timeNewSegmentedCloud = timeScanCur;
+    // /**
+    //  * @brief 
+    //  * 
+    //  * @param buffer_vec 
+    //  */
+    // void laserCloudCopier(const std::vector<single_buffer> buffer_vec, std::mutex producer_consumer){
+    //     std::unique_lock<std::mutex> uniq_lck(producer_consumer);
+    //         // Save Laser data and IMU data here:
+    //         timeNewSegmentedCloud = timeScanCur;
 
-            segmentedCloud->clear();
-            pcl::fromROSMsg(*laserCloudMsg, *segmentedCloud);
+    //         segmentedCloud->clear();
+    //         pcl::fromROSMsg(*laserCloudMsg, *segmentedCloud);
 
-            newSegmentedCloud = true;
+    //         newSegmentedCloud = true;
 
-            // Update internal IMU buffer counter
-            imuPointerLast = (imuPointerLast + 1) % imuQueLength;
+    //         // Update internal IMU buffer counter
+    //         imuPointerLast = (imuPointerLast + 1) % imuQueLength;
 
-            imuTime[imuPointerLast] = imuIn->header.stamp.toSec();
+    //         imuTime[imuPointerLast] = imuIn->header.stamp.toSec();
 
-            // Buffer_vec contains imu in the last member.
-            imuRoll[imuPointerLast] = buffer_vec.back()->...;
-            imuPitch[imuPointerLast] = buffer_vec.back()->...;
-            imuYaw[imuPointerLast] = buffer_vec.back()->...;
+    //         // Buffer_vec contains imu in the last member.
+    //         imuRoll[imuPointerLast] = buffer_vec.back()->...;
+    //         imuPitch[imuPointerLast] = buffer_vec.back()->...;
+    //         imuYaw[imuPointerLast] = buffer_vec.back()->...;
 
-            imuAccX[imuPointerLast] = buffer_vec.back()->...;
-            imuAccY[imuPointerLast] = buffer_vec.back()->...;
-            imuAccZ[imuPointerLast] = buffer_vec.back()->...;
+    //         imuAccX[imuPointerLast] = buffer_vec.back()->...;
+    //         imuAccY[imuPointerLast] = buffer_vec.back()->...;
+    //         imuAccZ[imuPointerLast] = buffer_vec.back()->...;
 
-            imuAngularVeloX[imuPointerLast] = buffer_vec.back()->....angular_velocity.x;
-            imuAngularVeloY[imuPointerLast] = buffer_vec.back()->....angular_velocity.y;
-            imuAngularVeloZ[imuPointerLast] = buffer_vec.back()->....angular_velocity.z;
+    //         imuAngularVeloX[imuPointerLast] = buffer_vec.back()->....angular_velocity.x;
+    //         imuAngularVeloY[imuPointerLast] = buffer_vec.back()->....angular_velocity.y;
+    //         imuAngularVeloZ[imuPointerLast] = buffer_vec.back()->....angular_velocity.z;
 
-            AccumulateIMUShiftAndRotation();
+    //         AccumulateIMUShiftAndRotation();
     
-        uniq_lck.unlock();
-    }
+    //     uniq_lck.unlock();
+    // }
 
     void imuHandler(const sensor_msgs::Imu::ConstPtr& imuIn)
     {
@@ -1902,24 +1902,24 @@ public:
 
 
 
-int main(int argc, char** argv)
-{
-    ros::init(argc, argv, "lego_loam");
+// int main(int argc, char** argv)
+// {
+//     ros::init(argc, argv, "lego_loam");
 
-    ROS_INFO("\033[1;32m---->\033[0m Feature Association Started.");
+//     ROS_INFO("\033[1;32m---->\033[0m Feature Association Started.");
 
-    FeatureAssociation FA;
+//     FeatureAssociation FA;
 
-    ros::Rate rate(200);
-    while (ros::ok())
-    {
-        ros::spinOnce();
+//     ros::Rate rate(200);
+//     while (ros::ok())
+//     {
+//         ros::spinOnce();
 
-        FA.runFeatureAssociation();
+//         FA.runFeatureAssociation();
 
-        rate.sleep();
-    }
+//         rate.sleep();
+//     }
     
-    ros::spin();
-    return 0;
-}
+//     ros::spin();
+//     return 0;
+// }

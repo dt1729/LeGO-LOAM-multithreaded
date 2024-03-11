@@ -510,14 +510,14 @@ public:
 
 
 
-int main(int argc, char** argv){
+// int main(int argc, char** argv){
 
-    ros::init(argc, argv, "lego_loam");
+//     ros::init(argc, argv, "lego_loam");
     
-    ImageProjection IP;
+//     ImageProjection IP;
 
-    ROS_INFO("\033[1;32m---->\033[0m Image Projection Started.");
+//     ROS_INFO("\033[1;32m---->\033[0m Image Projection Started.");
 
-    ros::spin();
-    return 0;
-}
+//     ros::spin();
+//     return 0;
+// }

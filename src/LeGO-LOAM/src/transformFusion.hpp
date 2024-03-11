@@ -240,15 +240,15 @@ public:
 };
 
 
-int main(int argc, char** arg   v)
-{
-    ros::init(argc, argv, "lego_loam");
+// int main(int argc, char** arg   v)
+// {
+//     ros::init(argc, argv, "lego_loam");
     
-    TransformFusion TFusion;
+//     TransformFusion TFusion;
 
-    ROS_INFO("\033[1;32m---->\033[0m Transform Fusion Started.");
+//     ROS_INFO("\033[1;32m---->\033[0m Transform Fusion Started.");
 
-    ros::spin();
+//     ros::spin();
 
-    return 0;
-}
+//     return 0;
+// }
