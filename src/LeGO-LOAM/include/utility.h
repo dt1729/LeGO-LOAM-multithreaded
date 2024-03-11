@@ -187,4 +187,21 @@ POINT_CLOUD_REGISTER_POINT_STRUCT (PointXYZIRPYT,
 
 typedef PointXYZIRPYT  PointTypePose;
 
+struct imu_data{
+    float roll;
+    float pitch;
+    float yaw;
+    float imuAccX;
+    float imuAccY;
+    float imuAccZ;
+    float imuAngularVeloX;
+    float imuAngularVeloY;
+    float imuAngularVeloZ;
+};
+
+struct buffer_struct{
+    pcl::PointCloud<PointType>::Ptr point_cloud; // Can i use template here to abstract out type between open3d and pcl?
+    imu_data imu_data;
+};
+
 #endif
