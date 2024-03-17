@@ -449,17 +449,17 @@ public:
             imuTime[imuPointerLast] = imuIn->header.stamp.toSec();
 
             // Buffer_vec contains imu in the last member.
-            imuRoll[imuPointerLast] = buffer_vec.back()->...;
-            imuPitch[imuPointerLast] = buffer_vec.back()->...;
-            imuYaw[imuPointerLast] = buffer_vec.back()->...;
+            imuRoll[imuPointerLast]     = std::move(buffer_vec.back().imu_data.roll);
+            imuPitch[imuPointerLast]    = std::move(buffer_vec.back().imu_data.pitch);
+            imuYaw[imuPointerLast]      = std::move(buffer_vec.back().imu_data.yaw);
 
-            imuAccX[imuPointerLast] = buffer_vec.back()->...;
-            imuAccY[imuPointerLast] = buffer_vec.back()->...;
-            imuAccZ[imuPointerLast] = buffer_vec.back()->...;
+            imuAccX[imuPointerLast] = std::move(buffer_vec.back().imu_data.imuAccX);
+            imuAccY[imuPointerLast] = std::move(buffer_vec.back().imu_data.imuAccY);
+            imuAccZ[imuPointerLast] = std::move(buffer_vec.back().imu_data.imuAccZ);
 
-            imuAngularVeloX[imuPointerLast] = buffer_vec.back()->....angular_velocity.x;
-            imuAngularVeloY[imuPointerLast] = buffer_vec.back()->....angular_velocity.y;
-            imuAngularVeloZ[imuPointerLast] = buffer_vec.back()->....angular_velocity.z;
+            imuAngularVeloX[imuPointerLast] = std::move(buffer_vec.back().imu_data.imuAngularVeloX);
+            imuAngularVeloY[imuPointerLast] = std::move(buffer_vec.back().imu_data.imuAngularVeloY);
+            imuAngularVeloZ[imuPointerLast] = std::move(buffer_vec.back().imu_data.imuAngularVeloZ);
 
             AccumulateIMUShiftAndRotation();
     
